@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.CustomActionFilters;
 using WebApi.Models.Domain;
@@ -9,6 +10,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class WalksController : ControllerBase
     {
         private readonly IMapper _mapper;
