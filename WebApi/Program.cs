@@ -19,6 +19,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WebApiDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebApiConnectionString"))
 );
+builder.Services.AddDbContext<WebApiAuthDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebApiAuthConnectionString"))
+);
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
