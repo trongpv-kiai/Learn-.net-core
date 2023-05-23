@@ -24,6 +24,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll()
         {
             var regions = await _regionRepository.GetListAsync();
@@ -33,6 +34,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var regionDomainModel = await _regionRepository.GetByIdAsync(id);
@@ -49,6 +51,7 @@ namespace WebApi.Controllers
         [HttpPost]
         [Route("")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             var regionDomainModel = _mapper.Map<Region>(addRegionRequestDto);
@@ -67,6 +70,7 @@ namespace WebApi.Controllers
         [HttpPut]
         [Route("{id}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
             var regionUpdateModel = _mapper.Map<Region>(updateRegionRequestDto);
@@ -82,6 +86,7 @@ namespace WebApi.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var regionDomainModel = await _regionRepository.DeleteAsync(id);
