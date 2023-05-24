@@ -2,6 +2,9 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -55,7 +58,7 @@ builder.Services.AddSwaggerGen(options =>
             new string[]{}
         }
     });
-});
+}); 
 
 // Inject DL
 builder.Services.AddDbContext<WebApiDbContext>(options =>
@@ -64,11 +67,13 @@ builder.Services.AddDbContext<WebApiDbContext>(options =>
 builder.Services.AddDbContext<WebApiAuthDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebApiAuthConnectionString"))
 );
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+builder.Services.AddScoped<IImageRepository, LocalImageRepossitory>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
@@ -123,6 +128,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "Images")),
+    RequestPath = "/Images"
+});
 
 app.MapControllers();
 
