@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -17,10 +18,12 @@ namespace WebApi.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ITokenRepository _tokenRepository;
-        public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
+        private readonly ILogger<AuthController> _logger;
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository, ILogger<AuthController> logger)
         {
             _userManager = userManager;
             _tokenRepository = tokenRepository;
+            _logger = logger;
         }
         [HttpPost]
         [Route("register")]
@@ -68,6 +71,7 @@ namespace WebApi.Controllers
                 if(userRoles != null)
                 {
                     var token = _tokenRepository.CreateJWTToken(user, userRoles.ToList());
+                    _logger.LogInformation($"Login successfully with data: {JsonSerializer.Serialize(loginRequestDto)}");
                     return Ok(new LoginResponseDto
                     {
                         JwtToken = token,
