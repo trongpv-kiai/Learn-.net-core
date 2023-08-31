@@ -1,7 +1,7 @@
 ﻿using WebApi.Models.Domain;
 using WebApi.Models.DTO;
 
-namespace WebApi.Repositories
+namespace WebApi.Repositories.Interface
 {
     public interface IWalkRepository
     {

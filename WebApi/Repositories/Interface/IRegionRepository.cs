@@ -1,6 +1,6 @@
 ﻿using WebApi.Models.Domain;
 
-namespace WebApi.Repositories
+namespace WebApi.Repositories.Interface
 {
     public interface IRegionRepository
     {

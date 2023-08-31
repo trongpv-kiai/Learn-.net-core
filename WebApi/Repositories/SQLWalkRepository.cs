@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApi.Data;
 using WebApi.Models.Domain;
 using WebApi.Models.DTO;
+using WebApi.Repositories.Interface;
 
 namespace WebApi.Repositories
 {

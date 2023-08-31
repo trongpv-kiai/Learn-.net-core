@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApi.CustomActionFilters;
 using WebApi.Models.DTO;
 using WebApi.Repositories;
+using WebApi.Repositories.Interface;
 
 namespace WebApi.Controllers
 {

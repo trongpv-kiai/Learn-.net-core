@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.Domain;
 using WebApi.Models.DTO;
-using WebApi.Repositories;
+using WebApi.Repositories.Interface;
 
 namespace WebApi.Controllers
 {

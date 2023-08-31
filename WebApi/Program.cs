@@ -12,6 +12,7 @@ using WebApi.Data;
 using WebApi.Mappings;
 using WebApi.Middlewares;
 using WebApi.Repositories;
+using WebApi.Repositories.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 

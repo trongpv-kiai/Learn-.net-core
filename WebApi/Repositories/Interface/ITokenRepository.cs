@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace WebApi.Repositories
+namespace WebApi.Repositories.Interface
 {
     public interface ITokenRepository
     {

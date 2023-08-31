@@ -6,7 +6,7 @@ using WebApi.CustomActionFilters;
 using WebApi.Data;
 using WebApi.Models.Domain;
 using WebApi.Models.DTO;
-using WebApi.Repositories;
+using WebApi.Repositories.Interface;
 
 namespace WebApi.Controllers
 {
