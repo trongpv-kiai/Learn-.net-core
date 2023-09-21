@@ -12,8 +12,8 @@ using WebApi.Data;
 namespace WebApi.Migrations.WebApiAuthDb
 {
     [DbContext(typeof(WebApiAuthDbContext))]
-    [Migration("20230523030414_Create Auth Database")]
-    partial class CreateAuthDatabase
+    [Migration("20230920090217_Initial Migartion")]
+    partial class InitialMigartion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

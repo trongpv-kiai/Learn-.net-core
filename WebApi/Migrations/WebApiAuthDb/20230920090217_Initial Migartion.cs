@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApi.Migrations.WebApiAuthDb
 {
     /// <inheritdoc />
-    public partial class CreateAuthDatabase : Migration
+    public partial class InitialMigartion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

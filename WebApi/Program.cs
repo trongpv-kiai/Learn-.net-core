@@ -13,6 +13,9 @@ using WebApi.Mappings;
 using WebApi.Middlewares;
 using WebApi.Repositories;
 using WebApi.Repositories.Interface;
+using WebApi.Services;
+using WebApi.Services.Interfaces;
+using WebApi.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,12 +83,14 @@ builder.Services.AddDbContext<WebApiAuthDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebApiAuthConnectionString"))
 );
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<IImageRepository, LocalImageRepossitory>();
+builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

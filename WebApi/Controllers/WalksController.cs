@@ -39,7 +39,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}")] 
         public async Task<IActionResult> GetById(Guid id)
         {
             var walkDomainModel = await _walkRepository.GetById(id);
